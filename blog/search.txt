@@ -1,0 +1,11 @@
+ post_list = Post.objects.all()
+    query = request.GET.get('q')
+    if query:
+        post_list = post_list.filter(
+            Q(title__icontains=query) |
+            Q(overview__icontains=query)
+        ).distinct()
+    context = {
+        'post_list': post_list,
+    }
+    return render(request, 'search_results.html', context)

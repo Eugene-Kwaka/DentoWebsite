@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+<br>
+<div class="container">
+    <h2> Search Results: </h2>
+
+    <br>
+
+    {% for post in post_list %}
+    <div class="single-blog-item style-2 d-flex flex-wrap align-items-center mb-50">
+        <!-- Blog Thumbnail -->
+        <div class="blog-thumbnail">
+            <a href="{{ post.get_absolute_url }}">
+                <img src="{{post.thumbnail.url}}" alt="">
+            </a>
+        </div>
+        <!-- Blog Content -->
+        <div class="blog-content">
+            <a href="{{ post.get_absolute_url }}" class="post-title"> {{ post.title }}</a>
+            <p>{{post.overview}}</p>
+            <div class="post-meta">
+                <a href="#"><i class="icon_clock_alt"></i> {{post.timestamp|timesince}} </a>
+                <a href="#"><i class="icon_chat_alt"></i> {{ post.comments.count }} </a>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+<br>
+{% endblock %}

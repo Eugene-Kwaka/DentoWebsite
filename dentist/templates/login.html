@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% load widget_tweaks %}
+{% block meta_description%} Signin to Join Dento Clinic {% endblock %}
+{% block title%} Signin to Join Dento Clinic {% endblock %}
+{% block content %}
+
+<div class="breadcumb-area bg-img bg-gradient-overlay" style="background-image: url({% static 'img/bg-img/12.jpg' %});">
+    <div class="container h-100">
+        <div class="row h-100 align-items-center">
+            <div class="col-12">
+                <h2 class="title"> Signin to join Dento Clinic </h2>
+            </div>
+        </div>
+    </div>
+</div>
+
+<br>
+<div class="col-4 offset-4 mb-5 mt-5">
+    <form method="POST" action="">
+        {% csrf_token %}
+        <div class="input-group mb-3">
+            <div class="input-group-append">
+                <span class="input-group-text"><i class="fas fa-user"></i></span>
+            </div>
+            <input type="text" name="username" placeholder="Username..." class="form-control">
+        </div>
+        <div class="input-group mb-2">
+            <div class="input-group-append">
+                <span class="input-group-text"><i class="fas fa-key"></i></span>
+            </div>
+            <input type="password" name="password" placeholder="Password..." class="form-control">
+        </div>
+
+        <div class="d-flex justify-content-center mt-3 login_container">
+            <input class="btn btn-primary" type="submit" value="Login">
+        </div>
+    </form>
+
+    <!-- This is a an error alert that will show a user that they have entered a wrong input required -->
+    {{ form.errors }}
+
+    {% for message in messages %}
+    <p id="messages">{{ message }}</p>
+    {% endfor %}
+
+
+    <div class="mt-4">
+        <div class="d-flex justify-content-center links">
+            Don't have an account? <a href="{% url 'registerPage' %}" class="ml-2"><strong>Sign Up</strong></a>
+        </div>
+
+        <div class="d-flex justify-content-center links">
+            Forgot your password? <a href="{% url 'reset_password' %}" class="ml-2"><strong>Reset Password</strong></a>
+        </div>
+    </div>
+
+</div>
+
+{% endblock %}

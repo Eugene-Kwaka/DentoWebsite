@@ -1,0 +1,277 @@
+{% load static %}
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="{% block meta_description %} Dento - Dentist &amp; Medical {% endblock %}">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/all.css"
+        integrity="sha384-gfdkjb5BdAXd+lj+gudLWI+BXq4IuLW5IT+brZEZsLFm++aCMlF1V92rMkPaX4PP" crossorigin="anonymous">
+    <!-- Title -->
+    <title>{% block title %} Dento Dental Services {% endblock title %}</title>
+    </title>
+
+    <!-- Favicon -->
+    <link rel="icon" href="{% static 'img/core-img/favicon.ico' %}">
+
+    <!-- Core Stylesheet -->
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+
+
+
+</head>
+
+<body>
+    <!-- Preloader -->
+    <div id="preloader">
+        <div class="preload-content">
+            <div id="dento-load"></div>
+        </div>
+    </div>
+
+    <!-- ***** Header Area Start ***** -->
+    <header class="header-area">
+        <!-- Top Header Area -->
+        <div class="top-header-area">
+            <div class="container h-100">
+                <div class="row h-100 align-items-center">
+                    <!-- Top Content -->
+                    <div class="col-6 col-md-9 col-lg-8">
+                        <div class="top-header-content">
+                            <a href="#" data-toggle="tooltip" data-placement="bottom"
+                                title="Off Kwale - Kinango Road, Kwale, 80403-20 Kwale"><i class="fa fa-map-marker"></i>
+                                <span>Off Kwale
+                                    - Kinango Road, Kwale, 80403-20 Kwale</span></a>
+                            <a href="#" data-toggle="tooltip" data-placement="bottom" title="info.dento@gmail.com"><i
+                                    class="fa fa-envelope"></i> <span>info.dento@gmail.com</span></a>
+                        </div>
+                    </div>
+                    <!-- Top Header Social Info -->
+                    <div class="col-6 col-md-3 col-lg-4">
+                        <div class="top-header-social-info text-right">
+                            <a href="#" data-toggle="tooltip" data-placement="bottom" title="Facebook"><i
+                                    class="fa fa-facebook"></i></a>
+                            <a href="#" data-toggle="tooltip" data-placement="bottom" title="Twitter"><i
+                                    class="fa fa-twitter"></i></a>
+                            <a href="#" data-toggle="tooltip" data-placement="bottom" title="Google Plus"><i
+                                    class="fa fa-google-plus"></i></a>
+                            <a href="#" data-toggle="tooltip" data-placement="bottom" title="Linkedin"><i
+                                    class="fa fa-linkedin"></i></a>
+                            <a href="#" data-toggle="tooltip" data-placement="bottom" title="Pinterest"><i
+                                    class="fa fa-pinterest"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Top Header End -->
+
+        <!-- Main Header Start -->
+        <div class="main-header-area">
+            <div class="classy-nav-container breakpoint-off">
+                <div class="container">
+                    <!-- Classy Menu -->
+                    <nav class="classy-navbar justify-content-between" id="dentoNav">
+
+                        <!-- Logo -->
+                        <a class="nav-brand" href="{% url 'home' %}"><img src="{% static 'img/core-img/logo.png' %}"
+                                alt=""></a>
+
+                        <!-- Navbar Toggler -->
+                        <div class="classy-navbar-toggler">
+                            <span class="navbarToggler"><span></span><span></span><span></span></span>
+                        </div>
+
+                        <!-- Menu -->
+                        <div class="classy-menu">
+
+                            <!-- Close Button -->
+                            <div class="classycloseIcon">
+                                <div class="cross-wrap"><span class="top"></span><span class="bottom"></span></div>
+                            </div>
+
+                            <!-- Nav Start -->
+                            <div class="classynav">
+                                <ul id="nav">
+                                    <li><a href="{% url 'home' %}">Home</a></li>
+                                    <li><a href="{% url 'about' %}">About</a></li>
+                                    <li><a href="{% url 'service' %}">Services</a></li>
+                                    <li><a href="{% url 'pricing' %}">Pricing</a></li>
+                                    <li><a href="{% url 'post-list' %}">Blog</a>
+                                    </li>
+                                    <li><a href="{% url 'contact' %}">Contact</a></li>
+
+                                    {% if request.user.is_staff %}
+                                    <li><a href="{% url 'post-create' %}">Write a Blog</a></li>
+                                    <li><a href="{% url 'createservice' %}">Set Services & Prices</a></li>
+                                    {% endif %}
+
+
+                                </ul>
+                            </div>
+                            <!-- Nav End -->
+                        </div>
+
+                        <!-- Booking Now Button -->
+                        {% if request.user.is_authenticated %}
+                        <a href="{% url 'bookappointment' %}" class="btn dento-btn booking-btn">Book An Appointment
+                            Now</a>
+                        <br>
+
+                        <a href="{% url 'logout' %}"><strong> Logout </strong> </a>
+
+                        {% else %}
+                        <a href="{% url 'registerPage' %}" class="btn dento-btn booking-btn">Sign Up
+                        </a>
+
+                        <a href="{% url 'loginPage' %}" class="btn dento-btn booking-btn">Login
+                        </a>
+                        {% endif %}
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- ***** Header Area End ***** -->
+    {% block content %}
+
+    {% endblock %}
+
+    <!-- ***** Footer Area Start ***** -->
+    <footer class="footer-area bg-img bg-gradient-overlay"
+        style="background-image: url({% static 'img/bg-img/3.jpg' %});">
+        <div class="container">
+            <div class="row">
+                <!-- Single Footer Widget -->
+                <div class="col-12 col-sm-6 col-lg-4">
+                    <div class="single-footer-widget">
+                        <a href="./index.html" class="d-block mb-4"><img src="{% static 'img/core-img/logo.png' %}"
+                                alt=""></a>
+                        <p>Etiam sutor risus, dapibus act elefend katen, lacinia sitamet denim. Mauris sagittis kansa
+                            interdum
+                            dignissim.</p>
+                        <div class="footer-contact">
+                            <p><i class="icon_pin"></i> 28 Jackson Street, Chicago, 7788569 USA</p>
+                            <p><i class="icon_phone"></i> +84. 2252. 2250. 122</p>
+                            <p><i class="icon_mail"></i> info.dento@gmail.com</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Single Footer Widget -->
+                <div class="col-12 col-sm-6 col-lg">
+                    <div class="single-footer-widget">
+                        <!-- Widget Title -->
+                        <h5 class="widget-title">Opening Hours</h5>
+
+                        <!-- Opening Hours -->
+                        <ul class="opening-hours">
+                            <li><span>Mon-Wed</span> <span>8.00-18.00</span></li>
+                            <li><span>Thu-Fri</span> <span>8.00-17.00</span></li>
+                            <li><span>Sat</span> <span>9.00-17.00</span></li>
+                            <li><span>Sun</span> <span>10.00-17.00</span></li>
+                            <li><span>Holiday</span> <span>Closed</span></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Single Footer Widget -->
+                <div class="col-12 col-sm-6 col-lg">
+                    <div class="single-footer-widget">
+                        <!-- Widget Title -->
+                        <h5 class="widget-title">Quick Link</h5>
+
+                        <!-- Quick Links Nav -->
+                        <nav>
+                            <ul class="quick-links">
+                                <li><a href="{% url 'about' %}">About</a></li>
+                                <li><a href="{% url 'contact' %}">Contact</a></li>
+                                <li><a href="{% url 'service' %}">Services</a></li>
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+
+                <!-- Single Footer Widget -->
+                <div class="col-12 col-sm-6 col-lg">
+                    <div class="single-footer-widget">
+                        <!-- Widget Title -->
+                        <h5 class="widget-title">Newsletter</h5>
+
+                        <p>We will send out weekly newest article and some great offers</p>
+                        <!-- Newsletter Form -->
+                        <div class="footer-newsletter-form">
+                            <form action="." method="post">
+                                {% csrf_token %}
+                                <input type="email" name="nl-email" value="" placeholder="Email Address">
+                                <button type="submit"><i class="fa fa-paper-plane" aria-hidden="true"></i></button>
+                            </form>
+                        </div>
+
+                        <!-- Social Info -->
+                        <div class="footer-social-info">
+                            <a href="#" data-toggle="tooltip" data-placement="top" title="Facebook"><i
+                                    class="fa fa-facebook"></i></a>
+                            <a href="#" data-toggle="tooltip" data-placement="top" title="Twitter"><i
+                                    class="fa fa-twitter"></i></a>
+                            <a href="#" data-toggle="tooltip" data-placement="top" title="Google Plus"><i
+                                    class="fa fa-google-plus"></i></a>
+                            <a href="#" data-toggle="tooltip" data-placement="top" title="Linkedin"><i
+                                    class="fa fa-linkedin"></i></a>
+                            <a href="#" data-toggle="tooltip" data-placement="top" title="Pinterest"><i
+                                    class="fa fa-pinterest"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Copywrite Area -->
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="copywrite-content">
+                        <p>
+                            <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                            Copyright &copy;
+                            <script>document.write(new Date().getFullYear());</script> All rights reserved | This
+                            template is made
+                            with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="#"
+                                target="_blank">Eugene</a>
+                            <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- ***** Footer Area End ***** -->
+</body>
+
+<!-- ******* All JS ******* -->
+<!-- jQuery js -->
+<script src="{% static 'js/jquery.min.js' %}"></script>
+<!-- Popper js -->
+<script src="{% static 'js/popper.min.js' %}"></script>
+<!-- Bootstrap js -->
+<script src="{% static 'js/bootstrap.min.js' %}"></script>
+<!-- All js -->
+<script src="{% static 'js/dento.bundle.js' %}"></script>
+<!-- Active js -->
+<script src="{% static 'js/default-assets/active.js' %}"></script>
+
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+    integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+    crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+    integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+    crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+    integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+    crossorigin="anonymous"></script>
+
+
+</html>
