@@ -85,37 +85,37 @@ def home(request):
     return render(request, 'home.html', context)
 
 
-@login_required(login_url='loginPage')
-# @unauthenticated_user
-def book_appointment(request):
-    user = request.user
-    form = AppointmentForm()
-    if request.method == 'POST':
-        form = AppointmentForm(request.POST or None, instance=user)
-        if form.is_valid():
-            form=user
-            form.save()
-            # return redirect('confirmappointment', args=appointment.id)
-        else:
-            form = AppointmentForm()
+# @login_required(login_url='loginPage')
+# # @unauthenticated_user
+# def book_appointment(request):
+#     user = request.user
+#     form = AppointmentForm()
+#     if request.method == 'POST':
+#         form = AppointmentForm(request.POST or None, instance=user)
+#         if form.is_valid():
+#             form=user
+#             form.save()
+#             # return redirect('confirmappointment', args=appointment.id)
+#         else:
+#             form = AppointmentForm()
 
-    context = {
-        'form': form,
-    }
-    return render(request, 'book_appointment.html', context)
+#     context = {
+#         'form': form,
+#     }
+#     return render(request, 'book_appointment.html', context)
 
 
-@login_required(login_url='loginPage')
-# @unauthenticated_user
-def confirm_appointment(request, pk):
-    appointment = get_object_or_404(Appointment, id=pk)
-    #patient = request.user
-    context = {
-        'appointment': appointment,
-        # 'patient': patient,
-    }
+# @login_required(login_url='loginPage')
+# # @unauthenticated_user
+# def confirm_appointment(request, pk):
+#     appointment = get_object_or_404(Appointment, id=pk)
+#     #patient = request.user
+#     context = {
+#         'appointment': appointment,
+#         # 'patient': patient,
+#     }
 
-    return render(request, 'confirm_appointment.html', context)
+#     return render(request, 'confirm_appointment.html', context)
 
 
 def pricing(request):

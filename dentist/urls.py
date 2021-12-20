@@ -11,8 +11,8 @@ urlpatterns = [
     path('logout/', views.logoutUser, name='logout'),
 
     # APPOINTMENT URL PATHS
-    path('book_appointment/', views.book_appointment, name="bookappointment"),
-    path('confirm_appointment/<str:pk>/', views.confirm_appointment, name="confirmappointment"),
+    # path('book_appointment/', views.book_appointment, name="bookappointment"),
+    # path('confirm_appointment/<str:pk>/', views.confirm_appointment, name="confirmappointment"),
 
 
     # MAIN PATHS

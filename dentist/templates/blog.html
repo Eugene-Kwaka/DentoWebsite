@@ -9,7 +9,7 @@
   <div class="container h-100">
     <div class="row h-100 align-items-center">
       <div class="col-12">
-        <h2 class="title">Blog</h2>
+        <h2 class="title">Check Out The Latest Blogs</h2>
       </div>
     </div>
   </div>
@@ -91,6 +91,7 @@
             </form>
           </div>
 
+          <hr>
 
           <!-- Single Widget Area -->
           <div class="single-widget-area catagories-widget">
@@ -98,11 +99,13 @@
             <!-- catagories list -->
             {% for cat in category_count %}
             <ul class="catagories-list">
-              <li><a href="{{ post.get_absolute_url }}"><strong>{{ cat.categories__title }}</strong> articles
-                </a><span>{{cat.categories__title__count}} </span></li>
+              <li><a href="{{ post.get_absolute_url }}"><strong>{{ cat.categories__title }}</strong> articles <span>: {{cat.categories__title__count}} </span>
+                </a></li>
             </ul>
             {% endfor %}
           </div>
+
+          <hr>
 
           <!-- Single Widget Area -->
           <div class="single-widget-area news-widget">

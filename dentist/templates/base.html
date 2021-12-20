@@ -75,7 +75,6 @@
                 <div class="container">
                     <!-- Classy Menu -->
                     <nav class="classy-navbar justify-content-between" id="dentoNav">
-
                         <!-- Logo -->
                         <a class="nav-brand" href="{% url 'home' %}"><img src="{% static 'img/core-img/logo.png' %}"
                                 alt=""></a>
@@ -108,28 +107,19 @@
                                     <li><a href="{% url 'post-create' %}">Write a Blog</a></li>
                                     <li><a href="{% url 'createservice' %}">Set Services & Prices</a></li>
                                     {% endif %}
-
-
+                                    <!-- Booking Now Button -->
+                                    {% if request.user.is_authenticated %}
+                                    <li><a href="{% url 'logout' %}"><strong> Logout </strong> </a></li>
+                                    {% else %}
+                                    <li><a href="{% url 'registerPage' %}">Sign Up
+                                    </a></li>
+                                    <li><a href="{% url 'loginPage' %}">Login
+                                    </a></li>
+                                    {% endif %}
                                 </ul>
                             </div>
                             <!-- Nav End -->
-                        </div>
-
-                        <!-- Booking Now Button -->
-                        {% if request.user.is_authenticated %}
-                        <a href="{% url 'bookappointment' %}" class="btn dento-btn booking-btn">Book An Appointment
-                            Now</a>
-                        <br>
-
-                        <a href="{% url 'logout' %}"><strong> Logout </strong> </a>
-
-                        {% else %}
-                        <a href="{% url 'registerPage' %}" class="btn dento-btn booking-btn">Sign Up
-                        </a>
-
-                        <a href="{% url 'loginPage' %}" class="btn dento-btn booking-btn">Login
-                        </a>
-                        {% endif %}
+                        </div
                     </nav>
                 </div>
             </div>

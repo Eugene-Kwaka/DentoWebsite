@@ -2,6 +2,7 @@
 
 import os
 from decouple import config
+from pathlib import Path
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -131,13 +132,13 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+# STATICFILES_DIRS = [
+#     os.path.join(BASE_DIR, 'static_in_env'),
+# ]
+# VENV_PATH = os.path.dirname(BASE_DIR)
+# STATIC_ROOT = os.path.join(VENV_PATH, 'static_root')
 
-STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'static_in_env'),
-]
-VENV_PATH = os.path.dirname(BASE_DIR)
-STATIC_ROOT = os.path.join(VENV_PATH, 'static_root')
-MEDIA_ROOT = os.path.join(VENV_PATH, 'media_root')
 
 # SMTP Configuration
 EMAIL_BACKEND = config('EMAIL_BACKEND')

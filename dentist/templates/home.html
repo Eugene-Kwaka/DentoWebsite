@@ -24,7 +24,7 @@
                 find out what we have to
                 offer you.</p>
               <div class="welcome-btn-group">
-                <a href="#" class="btn dento-btn mx-2" data-animation="fadeInUp" data-delay="500ms">Get Started</a>
+                <!-- <a href="#" class="btn dento-btn mx-2" data-animation="fadeInUp" data-delay="500ms">Get Started</a> -->
                 <a href="{% url 'contact' %}" class="btn dento-btn mx-2 active" data-animation="fadeInUp"
                   data-delay="700ms">Contact
                   Us</a>
@@ -185,7 +185,7 @@
           <div class="row">
             <!-- Single Service -->
             {% for service in services %}
-            <div class="col-6 col-md-4">
+            <div class="col-lg-6 col-md-4 col-sm-12">
               <div class="single-service mb-70">
                 <img src="{{ service.pic.url }}" alt="">
                 <h6>{{ service.name }}</h6>
@@ -194,7 +194,7 @@
             {% endfor %}
 
             <!-- Video Area -->
-            <div class="col-12 col-lg-6">
+            <div class="col-lg-6 col-md-4 col-sm-12">
               <div class="dento-video-area mb-100">
                 <iframe width="560" height="315" src="https://www.youtube.com/embed/pDDCKGV8cuM" frameborder="0"
                   allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
