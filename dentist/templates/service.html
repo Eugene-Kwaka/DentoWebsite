@@ -37,12 +37,23 @@
       {% for service in services %}
       <!-- Single Service Area -->
       <div class="col-12 col-sm-6 col-lg-4">
+        <!-- <div class="card">
+          <div class="embed-responsive embed-responsive-16by9">
+            <img alt="Card image cap" class=" icon-- card-img-top embed-responsive-item" src="{{service.pic.url}}" />
+         </div>
+          <div class="card-body">
+            <h5 class="card-title">{{service.name}}</h5>
+            <p class="card-text"> {{service.description}}.</p>
+            <p>Price: {{service.price}} | Stages: {{service.stage}}</p>
+          </div>
+        </div> -->
         <div class="single-service--area text-center mb-50">
           <div class="icon--">
             <img src="{{service.pic.url}}" alt="">
           </div>
           <h5> {{service.name}} </h5>
           <p> {{service.description}} </p>
+          <p class="text-dark">Stages: {{service.stage}} | Price: Sh {{service.price}}</p>
         </div>
       </div>
       {% endfor %}

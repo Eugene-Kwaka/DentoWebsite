@@ -96,20 +96,21 @@
                             <div class="classynav">
                                 <ul id="nav">
                                     <li><a href="{% url 'home' %}">Home</a></li>
-                                    <li><a href="{% url 'about' %}">About</a></li>
                                     <li><a href="{% url 'service' %}">Services</a></li>
                                     <li><a href="{% url 'pricing' %}">Pricing</a></li>
-                                    <li><a href="{% url 'post-list' %}">Blog</a>
-                                    </li>
-                                    <li><a href="{% url 'contact' %}">Contact</a></li>
-
+                                    <li><a href="{% url 'post-list' %}">Blog</a></li>
                                     {% if request.user.is_staff %}
                                     <li><a href="{% url 'post-create' %}">Write a Blog</a></li>
                                     <li><a href="{% url 'createservice' %}">Set Services & Prices</a></li>
+                                    {% else %}
+                                    <li><a href="{% url 'about' %}">About</a></li>
+                                    <li><a href="{% url 'contact' %}">Contact</a></li>
                                     {% endif %}
                                     <!-- Booking Now Button -->
                                     {% if request.user.is_authenticated %}
-                                    <li><a href="{% url 'logout' %}"><strong> Logout </strong> </a></li>
+                                    <li><a href="{% url 'my_appointments' %}">My Appointments
+                                    </a></li>
+                                    <li><a class="text-danger" href="{% url 'logout' %}"><strong> Logout </strong> </a></li>
                                     {% else %}
                                     <li><a href="{% url 'registerPage' %}">Sign Up
                                     </a></li>
@@ -126,6 +127,16 @@
         </div>
     </header>
     <!-- ***** Header Area End ***** -->
+
+    <!--Will create a message alert  -->
+    {% if messages %}
+        {% for msg in messages %}
+      <div class="container">
+        <div class="alert alert-{{msg.tags}}">{{msg}}</div>
+      </div>
+        {% endfor %}
+    {% endif %}
+    
     {% block content %}
 
     {% endblock %}

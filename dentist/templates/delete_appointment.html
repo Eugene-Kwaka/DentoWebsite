@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% load widget_tweaks %}
+{% block meta_description%} Add a Service {% endblock %}
+{% block title%} Add Service Page {% endblock %}
+{% block content %}
+
+<div class="breadcumb-area bg-img bg-gradient-overlay" style="background-image: url({% static 'img/bg-img/12.jpg' %});">
+    <div class="container h-100">
+        <div class="row h-100 align-items-center">
+            <div class="col-12">
+                <h2 class="title">Delete Appointment</h2>
+            </div>
+        </div>
+    </div>
+</div>
+
+<br>
+
+<div class="row">
+    <div class="col-md-6">
+        <div class="card card-body ml-3">
+
+            <p>Are you sure you want to delete "{{ appointment }}" ?</p>
+
+            <form action="{% url 'delete_appointment' appointment.id %}" method="post">
+                {% csrf_token %}
+
+                <a href="{% url 'home' %}" class="btn btn-warning">Cancel</a>
+                <input type="submit" class="btn btn-danger" name="Delete">
+            </form>
+        </div>
+    </div>
+</div>
+<br>
+
+{% endblock %}

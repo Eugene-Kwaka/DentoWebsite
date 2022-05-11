@@ -62,59 +62,78 @@ def logoutUser(request):
 def home(request):
     latest = Post.objects.order_by('-timestamp')[0:3]
     services = Service.objects.all()
-    # form = AppointmentForm()
-    # #appointment = Appointment.objects.get(id=id)
-
-    # # AppointmentForm
-    # if request.method == "POST":
-    #     form = AppointmentForm(request.POST)
-    #     if form.is_valid():
-    #         form.instance.user = request.user
-    #         #form.instance.appointment = appointment
-    #         form.save()
-    #         return redirect('appointment')
-    #     else:
-    #         form = AppointmentForm(None)
-
     context = {
-        # 'form': form,
         'latest': latest,
         'services': services,
     }
-
     return render(request, 'home.html', context)
 
 
+@login_required(login_url='loginPage')
+def book_appointment(request):
+    form = AppointmentForm()
+    if request.method == 'POST':
+        form = AppointmentForm(request.POST or None)
+        if form.is_valid():
+            appointment = Appointment(
+                user=request.user,
+                name=request.POST['name'], 
+                phone=request.POST['phone'], 
+                email=request.POST['email'], 
+                schedule=request.POST['schedule'], 
+                date=request.POST['date'], 
+                message=request.POST['message']
+                )
+            appointment.save()
+            messages.success(request, f"Appointment booked successfully.")
+            # return redirect('confirmappointment', pk=appointment.id)
+            return redirect('my_appointments')
+        else:
+            form = AppointmentForm()
+
+    context = {
+        'form': form,
+    }
+    return render(request, 'book_appointment.html', context)
+
+@login_required(login_url='loginPage')
+def my_appointments(request):
+    appointments = Appointment.objects.filter(user=request.user)
+    context={
+        'appointments':appointments,
+    }
+    return render(request, 'my_appointments.html', context)
+
+@login_required(login_url='loginPage')
+def update_appointment(request, pk):
+    appointment = Appointment.objects.get(id=pk)
+    form = AppointmentForm(instance=appointment)
+    if request.method == 'POST':
+        form = AppointmentForm(request.POST, request.FILES, instance=appointment)
+        if form.is_valid():
+            form.save()
+            return redirect('my_appointments')
+    context = {
+        'form': form,
+    }
+    return render(request, 'update_appointment.html', context)
+
+@login_required(login_url='loginPage')
+def delete_appointment(request, pk):
+    appointment= Appointment.objects.get(id=pk)
+    if request.method == 'POST':
+        appointment.delete()
+        return redirect('my_appointments')
+    context = {
+        'appointment': appointment,
+    }
+    return render(request, 'delete_appointment.html', context)
 # @login_required(login_url='loginPage')
-# # @unauthenticated_user
-# def book_appointment(request):
-#     user = request.user
-#     form = AppointmentForm()
-#     if request.method == 'POST':
-#         form = AppointmentForm(request.POST or None, instance=user)
-#         if form.is_valid():
-#             form=user
-#             form.save()
-#             # return redirect('confirmappointment', args=appointment.id)
-#         else:
-#             form = AppointmentForm()
-
-#     context = {
-#         'form': form,
-#     }
-#     return render(request, 'book_appointment.html', context)
-
-
-# @login_required(login_url='loginPage')
-# # @unauthenticated_user
-# def confirm_appointment(request, pk):
+# def confirm_appointment(request,pk):
 #     appointment = get_object_or_404(Appointment, id=pk)
-#     #patient = request.user
 #     context = {
 #         'appointment': appointment,
-#         # 'patient': patient,
 #     }
-
 #     return render(request, 'confirm_appointment.html', context)
 
 

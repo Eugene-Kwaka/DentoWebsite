@@ -1,0 +1,73 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block meta_description%} This is the Prices Page for Dento Dental Services {% endblock %}
+{% block title%} Pricelist for Dento Dental Services {% endblock %}
+{% block content %}
+
+<!-- ***** Breadcrumb Area Start ***** -->
+<div class="breadcumb-area bg-img bg-gradient-overlay" style="background-image: url({% static 'img/bg-img/12.jpg' %});">
+  <div class="container h-100">
+    <div class="row h-100 align-items-center">
+      <div class="col-12">
+        <h2 class="title">My Appointments</h2>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="breadcumb--con">
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="#"><i class="fa fa-home"></i> Home</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Our Pricing</li>
+          </ol>
+        </nav>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- ***** Breadcrumb Area End ***** -->
+
+<!-- ***** Dento Pricing Table Area Start ***** -->
+<section class="dento-pricing-table-area mt-50 section-padding-0-100">
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <div class="dento-price-table table-responsive">
+
+          <table class="table table-borderless mb-0">
+            <thead>
+              <tr>
+                <th scope="col">Description</th>
+                <th scope="col">Date</th>
+                <th scope="col">Schedule</th>
+
+              </tr>
+            </thead>
+            <tbody>
+              {% for appointment in appointments %}
+              <tr>
+                <th scope="row">{{ appointment.message }} </th>
+                <td>{{ appointment.date }}</td>
+                <td>{{ appointment.schedule }}</td>
+
+                {% if request.user.is_authenticated %}
+                <td><a href="{% url 'update_appointment' appointment.id %}" data-bs-toggle="modal" dta-bs-target="#update-modal" class="btn btn-info">Edit</a></td>
+                <td><a href="{% url 'delete_appointment' appointment.id %}" class="btn btn-danger">Delete</a></td>
+                {% endif %}
+              </tr>
+
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- ***** Dento Pricing Table Area End ***** -->
+
+{% endblock %}

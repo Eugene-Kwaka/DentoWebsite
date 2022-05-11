@@ -11,8 +11,11 @@ urlpatterns = [
     path('logout/', views.logoutUser, name='logout'),
 
     # APPOINTMENT URL PATHS
-    # path('book_appointment/', views.book_appointment, name="bookappointment"),
+    path('book_appointment/', views.book_appointment, name="book_appointment"),
     # path('confirm_appointment/<str:pk>/', views.confirm_appointment, name="confirmappointment"),
+    path('my_appointments/', views.my_appointments, name="my_appointments"),
+    path('update_appointment/<str:pk>/', views.update_appointment, name="update_appointment"),
+    path('delete_appointment/<str:pk>/', views.delete_appointment, name="delete_appointment"),
 
 
     # MAIN PATHS

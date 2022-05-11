@@ -1,10 +1,10 @@
 from django.db import models
-from django.contrib.auth import get_user_model
+# from django.contrib.auth import get_user_model
 from django.contrib.auth.models import User
 # Create your models here.
 
 
-User = get_user_model()
+# User = get_user_model()
 
 
 # class Patient(models.Model):
@@ -24,22 +24,22 @@ class Appointment(models.Model):
         ('2 PM to 3 PM', '2 PM to 3 PM'),
     )
 
-    DAYS = (
-        ('Monday', 'Monday'),
-        ('Tuesday', 'Tuesday'),
-        ('Wednesday', 'Wednesday'),
-        ('Thursday', 'Thursday'),
-        ('Friday', 'Friday'),
-    )
+    # DAYS = (
+    #     ('Monday', 'Monday'),
+    #     ('Tuesday', 'Tuesday'),
+    #     ('Wednesday', 'Wednesday'),
+    #     ('Thursday', 'Thursday'),
+    #     ('Friday', 'Friday'),
+    # )
 
     #patient_name = models.OneToOneField(User, null=True, on_delete=models.CASCADE)
     name = models.CharField(max_length=100, null=True)
     user = models.ForeignKey(User, null=True, on_delete=models.CASCADE)
     phone = models.IntegerField(null=True)
     email = models.EmailField(null=True)
-    address = models.CharField(max_length=100, null=True)
+    # address = models.CharField(max_length=100, null=True)
     schedule = models.CharField(max_length=50, null=True, choices=SCHEDULES)
-    day = models.CharField(max_length=50, null=True, choices=DAYS)
+    date = models.DateField()
     message = models.TextField(max_length=200, null=True)
 
     def __str__(self):

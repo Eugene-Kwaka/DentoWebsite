@@ -1,4 +1,5 @@
 .env
+dentowebsite/
 excess.txt
 # Created by https://www.toptal.com/developers/gitignore/api/python,django,intellij,pycharm
 # Edit at https://www.toptal.com/developers/gitignore?templates=python,django,intellij,pycharm

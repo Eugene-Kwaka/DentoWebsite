@@ -1,16 +1,28 @@
 from django import forms
-from django.forms import ModelForm
+from django.forms import DateInput, ModelForm
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 # from crispy_forms.helper import FormHelper
 # from crispy_forms.layout import Column, Layout, Submit, Row
 
 from .models import *
+from django.forms import widgets
 
+
+class DateInput(forms.DateInput):
+    input_type = 'date'
 
 class AppointmentForm(ModelForm):
     class Meta:
         model = Appointment
+        widgets = {
+            'date': forms.DateInput(
+                format=('%Y-%m-%d'),
+                attrs={'class': 'form-control', 
+                'placeholder': 'Select a date',
+               'type': 'date'
+              }),
+}
         fields = '__all__'
         exclude = ['user']
 
