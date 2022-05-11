@@ -17,6 +17,8 @@ urlpatterns = [
     path('update_appointment/<str:pk>/', views.update_appointment, name="update_appointment"),
     path('delete_appointment/<str:pk>/', views.delete_appointment, name="delete_appointment"),
 
+    # ALL APPOINTMENTS VISIBLE TO ADMIN
+    path('all_appointments/', views.all_appointments, name="all_appointments"),
 
     # MAIN PATHS
     path('about.html/', views.about, name="about"),

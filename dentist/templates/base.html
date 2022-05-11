@@ -102,6 +102,8 @@
                                     {% if request.user.is_staff %}
                                     <li><a href="{% url 'post-create' %}">Write a Blog</a></li>
                                     <li><a href="{% url 'createservice' %}">Set Services & Prices</a></li>
+                                    <li><a href="{% url 'all_appointments' %}">Patients Appointments
+                                    </a></li>
                                     {% else %}
                                     <li><a href="{% url 'about' %}">About</a></li>
                                     <li><a href="{% url 'contact' %}">Contact</a></li>

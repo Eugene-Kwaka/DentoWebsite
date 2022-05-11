@@ -96,7 +96,8 @@ def book_appointment(request):
     }
     return render(request, 'book_appointment.html', context)
 
-@login_required(login_url='loginPage')
+# @login_required(login_url='loginPage')
+@allowed_users(allowed_roles=['patient'])
 def my_appointments(request):
     appointments = Appointment.objects.filter(user=request.user)
     context={
@@ -105,6 +106,7 @@ def my_appointments(request):
     return render(request, 'my_appointments.html', context)
 
 @login_required(login_url='loginPage')
+@allowed_users(allowed_roles=['patient', 'admin'])
 def update_appointment(request, pk):
     appointment = Appointment.objects.get(id=pk)
     form = AppointmentForm(instance=appointment)
@@ -119,6 +121,7 @@ def update_appointment(request, pk):
     return render(request, 'update_appointment.html', context)
 
 @login_required(login_url='loginPage')
+@allowed_users(allowed_roles=['patient', 'admin'])
 def delete_appointment(request, pk):
     appointment= Appointment.objects.get(id=pk)
     if request.method == 'POST':
@@ -128,6 +131,16 @@ def delete_appointment(request, pk):
         'appointment': appointment,
     }
     return render(request, 'delete_appointment.html', context)
+
+
+@allowed_users(allowed_roles=['admin'])
+def all_appointments(request):
+    appointments = Appointment.objects.all()
+    context={
+        'appointments':appointments,
+    }
+    return render(request, 'all_appointments.html', context)
+
 # @login_required(login_url='loginPage')
 # def confirm_appointment(request,pk):
 #     appointment = get_object_or_404(Appointment, id=pk)
