@@ -42,8 +42,6 @@ urlpatterns = [
          views.delete_service, name="deleteservice"),
 
 
-
-
     # PASSWORD RESET URL PATHS
     path('reset_password/', auth_views.PasswordResetView.as_view(
         template_name="password_reset.html"), name="reset_password"),

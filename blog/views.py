@@ -4,7 +4,7 @@ from blog.models import Post
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.db.models import Count, Q
 from blog.forms import CommentForm, PostForm
-from dentist.decorators import allowed_users
+from .decorators import allowed_users
 
 
 def search(request):
@@ -78,6 +78,7 @@ def post(request, id):
     }
     return render(request, 'blog-details.html', context)
 
+
 @allowed_users(allowed_roles=['admin'])
 def post_create(request):
     title = 'Create'
@@ -93,6 +94,7 @@ def post_create(request):
         'title': title,
     }
     return render(request, 'post_create.html', context)
+
 
 @allowed_users(allowed_roles=['admin'])
 def post_update(request, id):
@@ -111,8 +113,14 @@ def post_update(request, id):
     }
     return render(request, 'post_create.html', context)
 
+
 @allowed_users(allowed_roles=['admin'])
 def post_delete(request, id):
     post = get_object_or_404(Post, id=id)
-    post.delete()
-    return redirect(reverse('blog.html'))
+    if request.method == 'POST':
+        post.delete()
+        return redirect('home')
+    context = {
+        'post': post,
+    }
+    return render(request, 'post_delete.html', context)
