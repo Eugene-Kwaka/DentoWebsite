@@ -1,9 +1,9 @@
 from django.shortcuts import render, get_object_or_404, redirect, reverse
-from blog.models import Post
+from blog.models import Category, Post
 #from dentist.models import Patient
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.db.models import Count, Q
-from blog.forms import CommentForm, PostForm
+from blog.forms import CommentForm, PostForm, CategoryForm
 from .decorators import allowed_users
 
 
@@ -19,6 +19,58 @@ def search(request):
         'post_list': post_list,
     }
     return render(request, 'search_results.html', context)
+
+@allowed_users(allowed_roles=['admin'])
+def categories(request):
+    categories = Category.objects.all()
+    context = {
+        'categories':categories,
+    }
+    return render(request, 'category.html', context)
+
+
+@allowed_users(allowed_roles=['admin'])
+def add_category(request):
+    form = CategoryForm()
+    if request.method == 'POST':
+        form = CategoryForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('categories')
+        else:
+            form = CategoryForm()
+    context ={
+        'form':form,
+    }
+    return render(request, 'add_category.html', context)
+
+@allowed_users(allowed_roles=['admin'])
+def update_category(request, pk):
+    category = Category.objects.get(id=pk)
+    form = CategoryForm(instance=category)
+    if request.method == 'POST':
+        form = CategoryForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('categories')
+        else:
+            form = CategoryForm()
+    context ={
+        'form':form,
+    }
+    return render(request, 'update_category.html', context)
+
+@allowed_users(allowed_roles=['admin'])
+def delete_category(request, pk):
+    category = Category.objects.get(id=pk)
+    if request.method == 'POST':
+        category.delete()
+        return redirect('categories')
+    context = {
+        'category': category,
+    }
+    return render(request, 'delete_category.html', context)
+
 
 
 def get_category_count():

@@ -103,6 +103,12 @@
                 </a></li>
             </ul>
             {% endfor %}
+            <br>
+            <div>
+              {% if request.user.is_staff %}
+              <a class="btn btn-primary" href="{% url 'add_category' %}">Add Category</a>
+              {% endif %}
+            </div>
           </div>
 
           <hr>

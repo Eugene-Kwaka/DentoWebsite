@@ -171,38 +171,36 @@
 <section class="dento-service-area section-padding-100-0 bg-img bg-gradient-overlay jarallax clearfix"
   style="background-image: url({% static 'img/bg-img/13.jpg' %});">
   <div class="container">
+    <div class="section-heading white">
+      <h2>Our Services</h2>
+      <div class="line"></div>
+    </div>
     <div class="row align-items-center">
       <!-- Service Content -->
-      <div class="col-12 col-lg-6">
-        <div class="service-content mb-30">
+      <!-- <div class="col-12 col-lg-6"> -->
+        <!-- <div class="service-content mb-30"> -->
           <!-- Section Heading -->
-          <div class="section-heading white">
-            <h2>Our Services</h2>
-            <div class="line"></div>
-          </div>
-
-          <div class="row">
+          <!-- <div class="row"> -->
             <!-- Single Service -->
             {% for service in services %}
-            <div class="col-lg-6 col-md-4 col-sm-12">
+            <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
               <div class="single-service mb-70">
                 <img src="{{ service.pic.url }}" alt="">
                 <h6>{{ service.name }}</h6>
               </div>
             </div>
             {% endfor %}
-
             <!-- Video Area -->
-            <div class="col-lg-6 col-md-4 col-sm-12">
+            <!-- <div class="col-lg-6 col-md-6 col-sm-12">
               <div class="dento-video-area mb-100">
                 <iframe width="560" height="315" src="https://www.youtube.com/embed/pDDCKGV8cuM" frameborder="0"
                   allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
                   allowfullscreen></iframe>
               </div>
-            </div>
-          </div>
-        </div>
-      </div>
+            </div> -->
+          <!-- </div> -->
+        <!-- </div> -->
+      <!-- </div> -->
     </div>
   </div>
 </section>
