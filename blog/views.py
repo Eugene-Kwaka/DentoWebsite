@@ -1,6 +1,5 @@
 from django.shortcuts import render, get_object_or_404, redirect, reverse
 from blog.models import Category, Post
-#from dentist.models import Patient
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.db.models import Count, Q
 from blog.forms import CommentForm, PostForm, CategoryForm
@@ -8,17 +7,14 @@ from .decorators import allowed_users
 
 
 def search(request):
-    post_list = Post.objects.all()
-    query = request.GET.get('q')
-    if query:
-        post_list = post_list.filter(
-            Q(title__icontains=query) |
-            Q(overview__icontains=query)
-        ).distinct()
-    context = {
-        'post_list': post_list,
+    query = request.GET.get('query', '')
+    posts = Post.objects.filter(Q(title__icontains=query)| Q(overview__icontains=query) |Q(content__icontains=query)).distinct()
+    context={
+        'posts':posts, 
+        'query':query
     }
     return render(request, 'search_results.html', context)
+
 
 @allowed_users(allowed_roles=['admin'])
 def categories(request):

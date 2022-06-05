@@ -123,10 +123,10 @@
 
           <!-- Single Widget Area -->
           <div class="single-widget-area search-widget">
-            <form action="{% url 'search' %}" method="post">
+            <form action="{% url 'search' %}" method="get" class="search-form">
               {% csrf_token %}
-              <input type="search" name="q" class="form-control" placeholder="Search ...">
-              <button type="submit"><i class="icon_search"></i></button>
+              <input type="text" name="query" class="form-control" placeholder="Search ...">
+              <button type="submit" class="submit"><i class="icon_search"></i></button>
             </form>
           </div>
 
